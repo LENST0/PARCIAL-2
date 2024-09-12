@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Resumen Oferta Venta{% endblock %}
+
+{% block content %}
+    <h1>Resumen de Ventas con Ofertas Aplicadas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Cliente</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Cantidad Vendida</th>
+                <th>Precio Original</th>
+                <th>Descuento Aplicado</th>
+                <th>Precio Final</th>
+                <th>Fecha de Venta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.cliente }}</td>
+                <td>{{ venta.zapatilla.modelo }}</td>
+                <td>{{ venta.zapatilla.marca }}</td>
+                <td>{{ venta.cantidad }}</td>
+                <td>{{ venta.zapatilla.precio }}</td>
+                <td>{{ venta.oferta.descuento }}</td>
+                <td>{{ venta.total }}</td>
+                <td>{{ venta.fecha_venta }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No hay ventas con ofertas aplicadas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
